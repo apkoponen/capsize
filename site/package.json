@@ -1,7 +1,7 @@
 {
-  "name": "capsize-site",
+  "name": "tailwind-baseline-site",
   "private": true,
-  "description": "Capsize site",
+  "description": "Tailwind Baseline site",
   "version": "0.1.0",
   "scripts": {
     "build": "gatsby build --prefix-paths",

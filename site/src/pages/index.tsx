@@ -9,12 +9,11 @@ import Layout from '../components/Layout';
 import FontSelector from '../components/FontSelector';
 import OutputCSS from '../components/OutputCSS';
 import Logo from '../components/Logo';
-import CapSizeSelector from '../components/CapSizeSelector';
-import Preview from '../components/Preview';
 import MetricsPreview from '../components/MetricsPreview';
 import ContentBlock from '../components/ContentBlock';
 import Heading from '../components/Heading';
 import fontSizes from '../fontSizes';
+import Code from '../components/Code';
 
 const Step = ({
   number,
@@ -30,7 +29,7 @@ const Step = ({
       <Box>
         <ContentBlock>
           <Heading as="h2" size="2">
-            <Box as="span" color="pink.400" fontSize={['1.2em', '1.5em']}>
+            <Box as="span" color="pink.400" fontSize={['1.2em', '1.4em']}>
               {number}.{' '}
             </Box>
             {title}
@@ -42,9 +41,7 @@ const Step = ({
   </Stack>
 );
 
-const logoSize = fontSizes['1'].map(
-  (size, i) => `${i < 2 ? size * 1.8 : size}px`,
-);
+const logoSize = fontSizes['1'].map((size, i) => `${size * 1.8}px`);
 
 const IndexPage = () => (
   <AppStateProvider>
@@ -68,16 +65,16 @@ const IndexPage = () => (
                   >
                     <Logo />
                   </Box>
-                  <Heading size="1">Capsize</Heading>
+                  <Heading size="1">Tailwind Baseline</Heading>
                 </Box>
 
                 <Heading as="div" size="3" align={['center', 'center', 'left']}>
                   <Box paddingX={[4, 4, 0]}>
                     <Box as="span" whiteSpace="nowrap">
-                      Flipping how we define
+                      Easily align text to baseline
                     </Box>{' '}
                     <Box as="span" whiteSpace="nowrap">
-                      typography in CSS.
+                      in Tailwind CSS.
                     </Box>
                   </Box>
                 </Heading>
@@ -88,7 +85,15 @@ const IndexPage = () => (
           <Box>
             <Stack spacing={[10, 10, 10, 20]}>
               <Box>
-                <Step number={1} title="Choose a font">
+                <Step number={1} title="Install the plugin">
+                  <ContentBlock>
+                    <Code language="bash">npm install tailwind-baseline</Code>
+                  </ContentBlock>
+                </Step>
+              </Box>
+
+              <Box>
+                <Step number={2} title="Choose a font">
                   <ContentBlock>
                     <Stack spacing={6}>
                       <Box>
@@ -103,22 +108,10 @@ const IndexPage = () => (
               </Box>
 
               <Box>
-                <Step number={2} title="Adjust size & spacing">
-                  <Stack spacing={10}>
-                    <Box>
-                      <ContentBlock>
-                        <CapSizeSelector />
-                      </ContentBlock>
-                    </Box>
-                    <Box>
-                      <Preview />
-                    </Box>
-                  </Stack>
-                </Step>
-              </Box>
-
-              <Box>
-                <Step number={3} title="Apply the styles">
+                <Step
+                  number={3}
+                  title="Copy the configuration to tailwind.config.js"
+                >
                   <ContentBlock>
                     <OutputCSS />
                   </ContentBlock>

@@ -25,6 +25,7 @@ function SEO({ description = '', lang = 'en', meta = [], title }: Props) {
             title
             description
             author
+            siteUrl
           }
         }
         ogImage: file(relativePath: { eq: "og-image.png" }) {
@@ -62,7 +63,7 @@ function SEO({ description = '', lang = 'en', meta = [], title }: Props) {
         },
         {
           property: `og:image`,
-          content: `https://seek-oss.github.io${ogImage.childImageSharp.fixed.src}`,
+          content: `${site.siteMetadata.siteUrl}${ogImage.childImageSharp.fixed.src}`,
         },
         {
           property: `og:image:width`,
@@ -82,7 +83,7 @@ function SEO({ description = '', lang = 'en', meta = [], title }: Props) {
         },
         {
           name: `twitter:image`,
-          content: `https://seek-oss.github.io${ogImage.childImageSharp.fixed.src}`,
+          content: `${site.siteMetadata.siteUrl}${ogImage.childImageSharp.fixed.src}`,
         },
         {
           name: `twitter:description`,

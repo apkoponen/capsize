@@ -21,9 +21,9 @@ const element = {
 } as const;
 
 const color = {
-  '1': 'blue.900',
-  '2': 'blue.800',
-  '3': 'gray.500',
+  '1': 'brand.900',
+  '2': 'brand.800',
+  '3': 'gray.600',
 };
 const capsizeForSize = (size: number, font: FontMetrics) =>
   capsize({

@@ -1,73 +1,66 @@
 import React from 'react';
 import { Tabs, TabList, Tab, TabPanels, TabPanel, Box } from '@chakra-ui/core';
-import capsize from 'capsize';
 
 import { useAppState } from './AppStateContext';
 import tabStyles from '../tabStyles';
 import Code from './Code';
 
-const convertToCSS = (capsizeStyles: ReturnType<typeof capsize>) => `
-.capsizedText {
-  font-size: ${capsizeStyles.fontSize};${
-  'lineHeight' in capsizeStyles
-    ? `
-  line-height: ${capsizeStyles.lineHeight};`
-    : ''
-}
-  padding: ${capsizeStyles.padding};
-}
+function ConfigCode({
+  fontFamily,
+  metrics: { familyName, subfamilyName, xHeight, ...baselineMetrics },
+}) {
+  let metricLines = Object.entries(baselineMetrics).map(([key, value]) => {
+    return `            ${key}: ${value}`;
+  });
+  const code = `const defaultTheme = require("tailwindcss/defaultTheme");
 
-.capsizedText::before {	
-  content: "";	
-  margin-top: ${capsizeStyles[':before'].marginTop};	
-  display: ${capsizeStyles[':before'].display};	
-  height: ${capsizeStyles[':before'].height};	
+module.exports = {
+  theme: {
+    extend: {
+      fontFamily: {
+        ${fontFamily}: ["${familyName}", ...defaultTheme.fontFamily.${fontFamily}],
+      },
+      baseline: {
+        fonts: {
+          ${fontFamily}: {
+${metricLines.join('\n')}
+          },
+        },
+      },
+    },
+  },
+  plugins: [require("tailwind-baseline")],
+};`;
+  return <Code language="js">{code}</Code>;
 }
-
-.capsizedText::after {	
-  content: "";	
-  margin-bottom: ${capsizeStyles[':after'].marginBottom};	
-  display: ${capsizeStyles[':after'].display};	
-  height: ${capsizeStyles[':after'].height};	
-}
-`;
 
 const OutputCSS = () => {
   const { state } = useAppState();
 
-  const { leading, capHeight, metrics, lineHeightStyle, lineGap } = state;
+  const { metrics } = state;
 
-  const capsizeStyles = capsize({
-    capHeight,
-    leading: lineHeightStyle === 'leading' ? leading : undefined,
-    gap: lineHeightStyle === 'gap' ? lineGap : undefined,
-    fontMetrics: metrics,
-  });
+  const fontFamilies = ['sans', 'serif', 'mono'];
 
   return (
     <Tabs {...tabStyles.tabs}>
       <TabList>
-        <Tab {...tabStyles.tab}>CSS-in-JS</Tab>
-        <Tab {...tabStyles.tab}>CSS</Tab>
+        {fontFamilies.map((fontFamily) => (
+          <Tab key={fontFamily} {...tabStyles.tab}>
+            {fontFamily}
+          </Tab>
+        ))}
       </TabList>
 
       <TabPanels>
-        <TabPanel>
-          <Box padding={4} paddingTop={8}>
-            <Box overflow="auto">
-              <Code language="json">
-                {JSON.stringify(capsizeStyles, null, 2)}
-              </Code>
+        {fontFamilies.map((fontFamily) => (
+          <TabPanel key={fontFamily}>
+            <Box padding={4} paddingTop={8}>
+              <Box overflow="auto">
+                <ConfigCode fontFamily={fontFamily} metrics={metrics} />
+              </Box>
             </Box>
-          </Box>
-        </TabPanel>
-        <TabPanel>
-          <Box padding={4} paddingTop={2}>
-            <Box overflow="auto">
-              <Code language="css">{convertToCSS(capsizeStyles)}</Code>
-            </Box>
-          </Box>
-        </TabPanel>
+          </TabPanel>
+        ))}
       </TabPanels>
     </Tabs>
   );

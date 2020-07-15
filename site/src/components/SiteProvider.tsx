@@ -14,11 +14,22 @@ interface SiteFontProviderProps {
   children: ReactElement;
 }
 
-const siteFont = siteFonts[1];
+const siteFont = siteFonts[2];
+
+const siteTheme = {
+  ...theme,
+  colors: {
+    ...theme.colors,
+    brand: {
+      900: '#18b6b9',
+      800: '#18a7b9',
+    },
+  },
+};
 
 export function SiteProvider({ children }: SiteFontProviderProps) {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={siteTheme}>
       <ColorModeProvider value="light">
         <CSSReset />
         <fontContext.Provider value={siteFont}>

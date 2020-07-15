@@ -76,6 +76,32 @@ const Code = ({ children, language }: Props) => {
       regular: colors.pink['400'],
       selector: colors.gray['700'],
     }),
+    bash: {
+      ...editorTheme({
+        punctuation: colors.gray['500'],
+        attribute: colors.gray['600'],
+        value: colors.pink['500'],
+        regular: colors.gray['600'],
+      }),
+      'pre[class*="language-"]': {
+        whiteSpace: 'pre',
+        padding: '16px',
+        background: colors.gray['100'],
+      },
+    },
+    js: {
+      ...editorTheme({
+        punctuation: colors.gray['500'],
+        attribute: colors.gray['600'],
+        value: colors.pink['500'],
+        regular: colors.gray['600'],
+      }),
+      'pre[class*="language-"]': {
+        whiteSpace: 'pre',
+        padding: '16px',
+        background: colors.gray['100'],
+      },
+    },
   };
 
   return (
