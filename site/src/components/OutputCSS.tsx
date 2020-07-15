@@ -54,7 +54,7 @@ const OutputCSS = () => {
       <TabPanels>
         {fontFamilies.map((fontFamily) => (
           <TabPanel key={fontFamily}>
-            <Box padding={4} paddingTop={8}>
+            <Box paddingTop={8}>
               <Box overflow="auto">
                 <ConfigCode fontFamily={fontFamily} metrics={metrics} />
               </Box>
