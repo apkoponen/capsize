@@ -1,5 +1,5 @@
 {
-  "name": "capsize",
+  "name": "tailwind-baseline-site",
   "private": true,
   "scripts": {
     "start": "yarn site:start",
@@ -24,14 +24,14 @@
     }
   },
   "author": {
-    "name": "Michael Taranto",
+    "name": "Ari-Pekka Koponen",
     "homepage": "https://github.com/michaeltaranto"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/seek-oss/capsize.git"
+    "url": "https://github.com/apkoponen/tailwind-baseline-site.git"
   },
-  "homepage": "https://github.com/seek-oss/capsize#readme",
+  "homepage": "https://tailwind-baseline.js.org",
   "license": "MIT",
   "dependencies": {
     "@babel/preset-env": "^7.10.2",

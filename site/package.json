@@ -13,13 +13,13 @@
     "deploy": "node scripts/deploy.js"
   },
   "author": {
-    "name": "Michael Taranto",
-    "homepage": "https://github.com/michaeltaranto"
+    "name": "Ari-Pekka Koponen",
+    "homepage": "https://twitter.com/apkoponen"
   },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/seek-oss/capsize/site"
+    "url": "https://github.com/apkoponen/tailwind-baseline-site/site"
   },
   "dependencies": {
     "@chakra-ui/core": "^0.8.0",
